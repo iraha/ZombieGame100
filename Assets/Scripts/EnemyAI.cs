@@ -7,10 +7,12 @@ public class EnemyAI : MonoBehaviour
 {
 
     [SerializeField] Transform target;
-    [SerializeField] float chaseRange = 5f;
+    [SerializeField] float chaseRange = 8f;
+
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
+    bool isProvoked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +25,45 @@ public class EnemyAI : MonoBehaviour
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
+        if (isProvoked)
+        {
+            EngageTarget();
+        }
+        else if (distanceToTarget >= chaseRange)
+        {
+            isProvoked = true;
+            //navMeshAgent.SetDestination(target.position);
+        }
+    }
 
-        if (distanceToTarget <= chaseRange)
+    private void EngageTarget()
+    {
+        if (distanceToTarget >= navMeshAgent.stoppingDistance)
         {
-            navMeshAgent.SetDestination(target.position);
-            chaseRange = 8f;
+            ChaseTarget();
         }
-        else
+
+        if (distanceToTarget <= navMeshAgent.stoppingDistance)
         {
-            chaseRange = 5f;
+            AttackTarget();
         }
+    }
+
+    private void ChaseTarget()
+    {
+        navMeshAgent.SetDestination(target.position);
+    }
+
+    private void AttackTarget()
+    {
+        Debug.Log(name + "is destorying " + target.name);
+    }
+
+
+    void OnDrawGizmosSelected()
+    {
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 }
