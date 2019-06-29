@@ -8,18 +8,18 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
-
     [SerializeField] float turnSpeed = 5f;
-
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
+    EnemyHealth health;
 
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -31,12 +31,19 @@ public class EnemyAI : MonoBehaviour
         {
             EngageTarget();
         }
-        else if (distanceToTarget >= chaseRange)
+        else if (distanceToTarget <= chaseRange)
         {
             isProvoked = true;
             //navMeshAgent.SetDestination(target.position);
         }
     }
+
+    public void OnDamageTaken()
+    {
+        isProvoked = true;
+        //Debug.Log("I take a damage...");
+    }
+
 
     private void EngageTarget()
     {
