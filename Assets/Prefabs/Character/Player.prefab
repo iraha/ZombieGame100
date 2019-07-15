@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1819847480213670026}
   - component: {fileID: 2772120756244038976}
   - component: {fileID: 2320438687843093353}
+  - component: {fileID: 6295903475516670175}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -345,6 +346,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSlots: []
+--- !u!114 &6295903475516670175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b0e730efd1d40938a50dbae55f6f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactCanvas: {fileID: 0}
+  impactTime: 0.3
 --- !u!1 &300191113
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +414,7 @@ MonoBehaviour:
   ammoSlot: {fileID: 2320438687843093353}
   ammoType: 0
   timeBetweenShots: 0.5
+  ammoText: {fileID: 0}
 --- !u!114 &6905583627757665883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,7 +821,7 @@ PrefabInstance:
     - target: {fileID: 7472279926522167811, guid: 8af14f9fb0e4942ca9f6fd223f8230d9,
         type: 3}
       propertyPath: m_Name
-      value: Spot Light
+      value: Flash Light
       objectReference: {fileID: 0}
     - target: {fileID: 2740017422754502350, guid: 8af14f9fb0e4942ca9f6fd223f8230d9,
         type: 3}
@@ -861,6 +877,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332565427210797141, guid: 8af14f9fb0e4942ca9f6fd223f8230d9,
+        type: 3}
+      propertyPath: m_SpotAngle
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8af14f9fb0e4942ca9f6fd223f8230d9, type: 3}

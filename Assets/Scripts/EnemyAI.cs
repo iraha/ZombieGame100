@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
+        target = FindObjectOfType<PlayerHealth>().transform;
     }
 
     // Update is called once per frame
