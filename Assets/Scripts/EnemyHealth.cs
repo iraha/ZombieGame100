@@ -1,24 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float hitPoints = 100f;
+    [SerializeField] float starthealth = 100f;
+    [SerializeField] private float health;
+
+    [SerializeField] GameObject enemyDeathEffect;
+    [SerializeField] GameObject glowEffect;
 
     bool isDead = false;
+
+    public AudioSource deathSound;
+
+    [Header("Unity Stuff")]
+    public Image healthBar;
+
+    
+
 
     public bool IsDead()
     {
         return isDead;
     }
 
+    void Start()
+    {
+        deathSound = GetComponent<AudioSource>();
+
+        health = starthealth;
+    }
+
     public void TakeDamage(float damage)
     {
         //GetComponent<EnemyAI>().OnDamageTaken();
         BroadcastMessage("OnDamageTaken");
-        hitPoints -= damage;
-        if (hitPoints <= 0)
+        health -= damage;
+        healthBar.fillAmount = health / starthealth;
+        if (health <= 0)
         {
             Die();
         }
@@ -26,12 +47,24 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+
+        enemyDeathEffect.SetActive(true);
+        glowEffect.SetActive(true);
+
         if (isDead)
         {
+            //Destroy(gameObject);
             return;
         }
+
+
+        deathSound.Play();
+
         isDead = true;
         GetComponent<Animator>().SetTrigger("die");
+
+        Destroy(gameObject, 2f);
+
     }
 
 }
