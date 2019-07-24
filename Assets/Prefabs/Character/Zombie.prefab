@@ -9989,6 +9989,7 @@ MonoBehaviour:
   health: 100
   enemyDeathEffect: {fileID: 2029618914}
   glowEffect: {fileID: 829716266}
+  deathSound: {fileID: 0}
   healthBar: {fileID: 1043736345}
 --- !u!95 &5421937854789142883
 Animator:

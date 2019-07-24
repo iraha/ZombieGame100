@@ -6,12 +6,13 @@ public class DeathHandler : MonoBehaviour
 {
 
     [SerializeField] Canvas gameOverCanvas;
-    AudioSource BGM;
+    public AudioSource BGM;
 
     private void Start()
     {
         gameOverCanvas.enabled = false;
-        BGM = GetComponent<AudioSource>();
+        //BGM = GetComponent<AudioSource>();
+        
     }
 
     public void HandleDeath()
@@ -23,6 +24,8 @@ public class DeathHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         BGM.Stop();
+
+        
     }
 
 }

@@ -14,6 +14,8 @@ public class EnemyHealth : MonoBehaviour
     bool isDead = false;
 
     public AudioSource deathSound;
+    public AudioSource zonbieVoice;
+
 
     [Header("Unity Stuff")]
     public Image healthBar;
@@ -28,10 +30,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-        deathSound = GetComponent<AudioSource>();
 
         health = starthealth;
+
     }
+
 
     public void TakeDamage(float damage)
     {
@@ -58,12 +61,15 @@ public class EnemyHealth : MonoBehaviour
         }
 
 
-        deathSound.Play();
+        //deathSound.Play();
 
         isDead = true;
         GetComponent<Animator>().SetTrigger("die");
 
         Destroy(gameObject, 2f);
+
+        deathSound.Play();
+        zonbieVoice.Play();
 
     }
 
